@@ -30,6 +30,7 @@ public class MyScript : MonoBehaviour
         // but that might be overkill.
         // Additionally, wondering to what extent I should be releasing these COM objects
         // as I've been lazy to date.
+        // Hence - apply a pinch of salt to this...
         if (this.lastScene != null)
         {
             var node = this.lastScene.OriginSpatialGraphNodeId;
@@ -83,7 +84,12 @@ public class MyScript : MonoBehaviour
         {
             Destroy(child);
         }
+        foreach (var child in this.quads)
+        {
+            Destroy(child);
+        }
         this.markers.Clear();
+        this.quads.Clear();
     }
 #if ENABLE_WINMD_SUPPORT
     async Task InitialiseAsync()
